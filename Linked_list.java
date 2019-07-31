@@ -3,6 +3,7 @@ package dsa.linkedlist;
 public class Linked_list {
 
     private Node head;
+    private int count;
 
     class Node {
 
@@ -37,17 +38,20 @@ public class Linked_list {
 
     //Print Elements of List
 
-        void PrintList(){
-        Node temp = head;
+        void PrintList() {
+            Node temp = head;
+            if (head == null)
+                System.out.println("OOPS!!! No Element in List!!!");
+            else {
+                System.out.println("Elements of List are as follows: ");
+                while (temp != null) {
+                    System.out.print(" " + temp.data);
+                    temp = temp.next;
+                }
 
-         System.out.println("Elements of List are as follows: ");
-        while(temp != null) {
-            System.out.print(" " + temp.data);
-            temp = temp.next;
+                System.out.println();
+            }
         }
-
-         System.out.println();
-    }
 
     // Insert at End of List
 
@@ -72,6 +76,62 @@ public class Linked_list {
         }
 
         }
+
+        // Delete an element from list
+
+       void DeleteElement(int val){
+
+        boolean ElementFound = false;
+        Node temp = head;
+
+           if (head.data == val){
+               head = head.next;
+               return;
+           }
+
+
+        Node previous_node ;
+        if (head == null)
+            System.out.println("OOPS!!! No Element in List!!!");
+        else{
+         loop: while(head != null){
+                previous_node = head;
+                if (head.data == val){
+                    System.out.println("Element removed is " + head.data);
+                    previous_node.prev.next= head.next;
+                    ElementFound = true;
+                    break loop;
+                }
+                else
+                    head = head.next;
+            }
+            if(!ElementFound)
+                System.out.println("No Such Element found in list.");
+        }
+
+        head = temp;
+
+       }
+
+
+       // Count number of elements in the list
+
+      void CountNoOfItems(){
+
+        Node temp = head;
+
+        System.out.println("Number of elements in list are : "+ lengthOfList(temp));
+
+      }
+
+      int lengthOfList(Node ref){
+
+        if(ref == null)
+            return 0;
+
+        return 1 + lengthOfList(ref.next);
+      }
+
 
 
 
@@ -100,6 +160,17 @@ public class Linked_list {
         list1.InsertAtStart(11);
 
         list1.PrintList();
+
+
+        list1.DeleteElement(20);
+
+        list1.PrintList();
+
+        list1.DeleteElement(11);
+
+        list1.PrintList();
+
+        list1.CountNoOfItems();
 
     }
 }
