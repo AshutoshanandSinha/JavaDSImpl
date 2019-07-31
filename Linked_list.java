@@ -1,69 +1,105 @@
+package dsa.linkedlist;
+
 public class Linked_list {
 
-
-    Node head;
-
+    private Node head;
 
     class Node {
 
-        int item;
-        Node next;
+         private int data;
+         private Node next;
+         private Node prev;
 
-        Node (int val ){
-            this.item = val;
+         Node(int value) {
+            this.data = value;
             this.next = null;
+            this.prev = null;
         }
 
-
-
     }
 
-    void Add(int val){
+    //Insert at starting point
 
-     Node new_node = new Node(val);
+        void InsertAtStart( int val ){
 
-     new_node.next = head;
+            Node NNode = new Node(val);
 
-     head = new_node;
-    }
+            if(head == null)
+                head = NNode;
+            else {
 
-    int Count(){
+                NNode.next = head;
+                head.prev = NNode;
+                head = NNode;
+            }
 
-        int count =0;
+        }
 
+    //Print Elements of List
+
+        void PrintList(){
         Node temp = head;
 
-        while (temp != null){
-
-            count++;
-
-            System.out.println( " The " + count+ " Element is " + temp.item );
-
+         System.out.println("Elements of List are as follows: ");
+        while(temp != null) {
+            System.out.print(" " + temp.data);
             temp = temp.next;
         }
 
-        return count;
-
+         System.out.println();
     }
 
+    // Insert at End of List
+
+        void InsertAtEnd( int val ){
+
+        Node NNode = new Node(val);
+        Node previous_Node = null;
+
+            if(head == null)
+            head = NNode;
+        else{
+            Node temp = head;
+
+            while (temp != null){
+                previous_Node =  temp;
+                temp = temp.next;
+            }
+
+            previous_Node.next = NNode;
+            NNode.prev = previous_Node;
+
+        }
+
+        }
 
 
 
-    public static void main (String[] args){
 
-        Linked_list l1 = new Linked_list();
 
-        l1.Add(5);
-        l1.Add(6);
-        l1.Add(7);
-        l1.Add(8);
-        l1.Add(9);
+    public static void main(String[] args){
 
-        System.out.println("Number of Elements in Linked List is " + l1.Count());
+        Linked_list list1 = new Linked_list();
 
-        System.out.println(l1);
+        list1.PrintList();
+
+        list1.InsertAtStart(13);
+        list1.InsertAtStart(14);
+        list1.InsertAtStart(15);
+        list1.InsertAtStart(16);
+
+        list1.PrintList();
+
+         list1.InsertAtEnd(20);
+        list1.InsertAtEnd(21);
+        list1.InsertAtEnd(22);
+        list1.InsertAtEnd(23);
+        list1.PrintList();
+
+        list1.InsertAtStart(12);
+        list1.InsertAtStart(11);
+
+        list1.PrintList();
 
     }
-
-
 }
