@@ -1,9 +1,10 @@
 package dsa.linkedlist;
 
+import java.util.Scanner;
+
 public class Linked_list {
 
     private Node head;
-    private int count;
 
     class Node {
 
@@ -33,7 +34,8 @@ public class Linked_list {
                 head.prev = NNode;
                 head = NNode;
             }
-
+            System.out.println();
+            PrintList();
         }
 
     //Print Elements of List
@@ -74,7 +76,8 @@ public class Linked_list {
             NNode.prev = previous_Node;
 
         }
-
+            System.out.println();
+            PrintList();
         }
 
         // Delete an element from list
@@ -110,7 +113,8 @@ public class Linked_list {
         }
 
         head = temp;
-
+           System.out.println();
+           PrintList();
        }
 
 
@@ -132,7 +136,51 @@ public class Linked_list {
         return 1 + lengthOfList(ref.next);
       }
 
+     void Initiate(Linked_list list1){
 
+         Scanner sc = new Scanner(System.in);
+
+       loop:  while(true){
+             System.out.println("==============================================");
+             System.out.println("List Of Operations available are as follows ");
+             System.out.println("==============================================");
+             System.out.println("1. Add element at end of list.");
+             System.out.println("2. Add element at start of list.");
+             System.out.println("3. Print items available in the list.");
+             System.out.println("4. Delete an element from the list.");
+             System.out.println("5. Exit.");
+
+             int input = sc.nextInt();
+
+             switch (input) {
+                 case 1:
+                     System.out.println("Enter the number you want to add it to list.");
+                     list1.InsertAtEnd(sc.nextInt());
+                     System.out.println();
+                     break;
+                 case 2:
+                     System.out.println("Enter the number you want to add it to list.");
+                     list1.InsertAtStart(sc.nextInt());
+                     System.out.println();
+                     break;
+                 case 3:
+                     list1.PrintList();
+                     System.out.println();
+                     break;
+                 case 4:
+                     System.out.println("Enter the element you want to delete from list.");
+                     list1.DeleteElement(sc.nextInt());
+                     System.out.println();
+                     break;
+                 case 5:
+                     break loop;
+
+                     default:
+                         System.out.println("No such options available.");
+                         System.out.println();
+             }
+         }
+     }
 
 
 
@@ -141,36 +189,38 @@ public class Linked_list {
 
         Linked_list list1 = new Linked_list();
 
-        list1.PrintList();
+//        list1.PrintList();
+//
+//        list1.InsertAtStart(13);
+//        list1.InsertAtStart(14);
+//        list1.InsertAtStart(15);
+//        list1.InsertAtStart(16);
+//
+//        list1.PrintList();
+//
+//         list1.InsertAtEnd(20);
+//        list1.InsertAtEnd(21);
+//        list1.InsertAtEnd(22);
+//        list1.InsertAtEnd(23);
+//        list1.PrintList();
+//
+//        list1.InsertAtStart(12);
+//        list1.InsertAtStart(11);
+//
+//        list1.PrintList();
+//
+//
+//        list1.DeleteElement(20);
+//
+//        list1.PrintList();
+//
+//        list1.DeleteElement(11);
+//
+//        list1.PrintList();
+//
+//        list1.CountNoOfItems();
 
-        list1.InsertAtStart(13);
-        list1.InsertAtStart(14);
-        list1.InsertAtStart(15);
-        list1.InsertAtStart(16);
-
-        list1.PrintList();
-
-         list1.InsertAtEnd(20);
-        list1.InsertAtEnd(21);
-        list1.InsertAtEnd(22);
-        list1.InsertAtEnd(23);
-        list1.PrintList();
-
-        list1.InsertAtStart(12);
-        list1.InsertAtStart(11);
-
-        list1.PrintList();
-
-
-        list1.DeleteElement(20);
-
-        list1.PrintList();
-
-        list1.DeleteElement(11);
-
-        list1.PrintList();
-
-        list1.CountNoOfItems();
+        list1.Initiate(list1);
 
     }
 }
